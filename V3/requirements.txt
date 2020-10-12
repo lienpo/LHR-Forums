@@ -1,0 +1,5 @@
+flask
+passlib
+psycopg2
+dotenv
+Flask-SQLAlchemy

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="create-reply-form">
+        <form method="post">
+            <div class="form-group">
+                <input type="text" class="form-control" id="content" name="content" placeholder="Your reply..."/>
+            </div>
+            <button type="submit" class="btn btn-primary">Reply</button>
+        </form>
+    </section>
+{% endblock %}

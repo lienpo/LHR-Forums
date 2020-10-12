@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for message in messages %}
+        {% for sender in users_from %}
+            {% if sender.id == message.user_from %}
+                {% if message.is_new == False %}
+                    <a class="btn btn-secondary" href="{{ url_for('pms.read_message', sender_name=sender.username, message_id=message.id) }}">
+                        {{ sender.username }} --- {{ message.subject }}
+                    </a>
+                {% else %}
+                    <a class="btn btn-primary" href="{{ url_for('pms.read_message', sender_name=sender.username, message_id=message.id) }}">
+                        {{ sender.username }} --- {{ message.subject }}
+                    </a>
+                {% endif %}
+                <hr>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

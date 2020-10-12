@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="topic-classification">
+        <h1>{{ topic.title }}</h1>
+        {% for user in users %}
+            {% if user.id == topic.user_id %}
+                <p>by <a href = "{{ url_for('users.profile', viewer_name=session['username'], viewee_name=user.username) }}">{{ user.username }}</a></p>
+            {% endif %}
+        {% endfor %}
+        <p>{{topic.content }}</p>
+    </div>
+
+<section>
+
+    <div class="list-group mb-3">
+        {% for post in posts %}
+            {% for user in users %}
+                {% if user.id == post.user_id %}
+                    <hr>
+                    <div class="list-group-post">
+                        <h3><a href = "{{ url_for('users.profile', viewer_name=session['username'], viewee_name=user.username) }}">{{ user.username }}</a></h3>
+                        {% if user.username == session['username'] %}
+                            <a class="btn btn-primary" href="{{ url_for('posts.edit_post', post_id = post.id) }}">Edit Post</a>
+                            <a class="btn btn-primary" href="{{ url_for('posts.delete_post', topic_title = topic.title, post_id = post.id) }}">Delete Post</a>
+                        {% endif %}
+                        <p>{{ post.content }}</p>
+                        <h4>{{ user.email }}</h4>
+                    </div>
+                    <hr>
+                {% endif %}
+            {% endfor %}
+            <br>
+        {% endfor %}
+    </div>
+    {% if session['username'] != None %}
+        <a class="btn btn-primary" href="{{ url_for('posts.new_post', topic_title=topic.title) }}">
+            Your Response
+        </a>
+    {% endif %}
+</section>
+
+{% endblock %}

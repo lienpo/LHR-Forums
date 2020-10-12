@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>{{ viewee.username }}</h1>
+    <h1>Email: {{ viewee.email }}</h1>
+    {% if viewee.username != viewer.username  and viewer.username != None %}
+        <a class="btn btn-primary" href="{{ url_for('pms.send_a_pm', receiver=viewee.username, sender=viewer.username) }}">
+            Send Private Message
+        </a>
+    {% endif %}
+{% endblock %}

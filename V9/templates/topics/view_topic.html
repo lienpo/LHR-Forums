@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+
+
+    <div class="topic-classification">
+        <h1>{{ topic.title }}</h1>
+                <p>by <a href = "{{ url_for('users.profile', viewer_name=session['username'], viewee_name=topic.creator_name) }}">{{ topic.creator_name }}</a></p>
+        <p>{{topic.content }}</p>
+        {% if session['username'] != "guest" %}
+            <p><a href ="{{ url_for('posts.new_post', topic_title=topic.title) }}">Your comment</a></p>
+        {% endif %}
+    </div>
+
+    <div class="all_posts">
+        {% for post in posts %}
+            <hr>
+            <h3><a href = "{{ url_for('users.profile', viewer_name=session['username'], viewee_name=post.creator_name) }}">{{ post.creator_name }}</a></h3>
+            {% if session['username'] == post.creator_name %}
+                <p><a class="btn btn-primary" href="{{ url_for('posts.edit_post', post_id = post.id) }}">Edit Post</a>
+                    <a class="btn btn-primary" href="{{ url_for('posts.delete_post', topic_title = topic.title, post_id = post.id) }}">Delete Post</a></p>
+            {% endif %}
+            <p>{{ post.content }}</p>
+            {% if session['username'] != "guest" %}
+                <a class="btn btn-primary" href="{{ url_for('replies.new_reply', post_id=post.id) }}">Reply</a>
+            {% endif %}
+            {% if post.has_replies(post.id) %}
+                <a class="btn btn-primary" href = "{{ url_for('replies.view_replies', post_id=post.id) }}">View {{ post.amt_of_replies(post.id) }} Replies</a>
+            {% endif %}
+            <hr>
+        {% endfor %}
+    </div>
+
+</section>
+
+{% endblock %}

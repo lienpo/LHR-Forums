@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <header><h1>Send email to {{ receiver.username }}</h1></header>
+    <section class="create-topic-form">
+        <form method="post">
+            <div class="form-group">
+                <label for="subject">subject</label>
+                <input type="text" class="form-control" id="subject" name="subject">
+            </div>
+
+            <div class="form-group">
+                <textarea name="content" id="content" placeholder="What do you want to tell {{ receiver.username }}?" cols="40" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+    </section>
+{% endblock %}

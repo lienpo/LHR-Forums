@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <header><h1>New Section</h1></header>
+    <section class="create-topic-form">
+        <form method="post">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" id="description" name="description" placeholder="What kind of topics do you want to be discussed in this section?"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Section</button>
+        </form>
+    </section>
+{% endblock %}

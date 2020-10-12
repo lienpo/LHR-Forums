@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+    <h1>{{ section.title }}</h1>
+</header>
+<section>
+    {% if session['username'] != "guest" %}
+        <a class="btn btn-primary" href="{{ url_for('topics.new_topic', section_id=section.id) }}">
+            Start New Discussion
+        </a>
+    {% endif %}
+    <div class="list-group mb-3">
+        {% for topic in topics %}
+            <div class="list-group-topic">
+                <p><a class="btn btn-secondary" href="{{ url_for('topics.view_topic', topic_title=topic.title) }}">{{ topic.title }}</a> by
+                    <a class="btn btn-secondary" href="{{ url_for('users.profile', viewer_name=session['username'], viewee_name=topic.creator_name) }}">{{ topic.creator_name }}</a></p>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

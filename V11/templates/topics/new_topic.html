@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <header><h1>Start Discussion</h1></header>
+    <section class="create-topic-form">
+        <form method="post">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" id="content" name="content" placeholder="What do you want to say?"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Start Discussion</button>
+        </form>
+    </section>
+{% endblock %}

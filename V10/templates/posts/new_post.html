@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <header><h1>Reply</h1></header>
+    <section class="create-post-form">
+        <form method="post">
+            <div class="form-group">
+                <input type="text" class="form-control" id="content" name="content" placeholder="What do you want to say?"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Reply</button>
+        </form>
+    </section>
+{% endblock %}

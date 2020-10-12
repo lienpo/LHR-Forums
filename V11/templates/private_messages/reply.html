@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <header><h1>Reply to {{ current_receiver.username }}</h1></header>
+    <section class="create-topic-form">
+        <form method="post">
+
+            <div class="form-group">
+                <textarea name="new_content_part" id="new_content_part" placeholder="How do you want to respond to {{ current_receiver.username }}?" cols="40" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Reply</button>
+        </form>
+    </section>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+    <h1>{{ topic.title }}</h1>
+</header>
+<section>
+
+    <div class="list-group mb-3">
+        {% for post in posts %}
+            {% for user in users %}
+                {% if user.id == post.user_id %}
+                    <hr>
+                    <div class="list-group-post">
+                        <h3><a href = "{{ url_for('users.profile', username = user.username) }}">{{ user.username }}</a></h3>
+                        <p>{{ post.content }}</p>
+                        <h4>{{ user.email }}</h4>
+                    </div>
+                    <hr>
+                {% endif %}
+            {% endfor %}
+            <br>
+        {% endfor %}
+    </div>
+    {% if session['username'] != None %}
+        <a class="btn btn-primary" href="{{ url_for('posts.new_post', topic_title=topic.title) }}">
+            Your Response
+        </a>
+    {% endif %}
+</section>
+
+{% endblock %}

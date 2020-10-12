@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+    <h1>Group Sections</h1>
+</header>
+<section>
+    {% if session['username'] != None %}
+    <a class="btn btn-primary" href="{{ url_for('sections.new_section') }}">
+        Start New Discussion
+    </a>
+    {% endif %}
+    <div class="list-group mb-3">
+        {% for section in sections %}
+            <div class="list-group-section">
+                {% for user in users %}
+                    {% if user.id == section.user_id %}
+                        <p><a class="btn btn-secondary" href="{{ url_for('sections.view_section', section_title=section.title) }}">{{ section.title }}</a> by
+                        <a class="btn btn-secondary" href="{{ url_for('users.profile', viewer_name=session['username'], viewee_name=user.username) }}">{{ user.username }}</a>
+                        Started on {{ section.origin }}</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

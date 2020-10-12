@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for message in messages %}
+        <p>
+            <a class="btn btn-primary" href="{{ url_for('pms.read_message', sender_name=sender.username, message_id=message.id) }}">{{ message.subject }} </a>
+        by <a class="btn btn-primary" href= "{{ url_for('users.profile', viewer_name=session['username'], viewee_name=message.user_from) }}"> {{ message.user_from }}</a>
+        </p>
+        <hr>
+    {% endfor %}
+{% endblock %}

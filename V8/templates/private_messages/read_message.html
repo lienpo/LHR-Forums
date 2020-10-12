@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <header><h2>From: {{ sender.username }}</h2></header>
+    <header><h2>Subject: {{ message.subject }}</h2></header>
+    <section class="create-topic-form">
+        <div class="form-group">
+            <p>{{ message.content }}</p>
+        </div>
+        <a class="btn btn-primary" href="{{ url_for('pms.reply_to_message', message_id=message.id, orig_sender_id=sender.id) }}">Reply To Message</a>
+        <a class="btn btn-danger" href="{{ url_for('pms.delete_mail', message_id=message.id, orig_sender_id=sender.id) }}">Delete Message</a>
+    </section>
+{% endblock %}

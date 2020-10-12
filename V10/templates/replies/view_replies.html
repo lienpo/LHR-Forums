@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <link rel="stylesheet" href="../static/css/replies.css">
+    {{ post.content }}
+    <p><a class="btn btn-secondary" href="{{ url_for('users.profile', viewer_name=session['username'], viewee_name=post.creator_name) }}">{{ post.creator_name }}</a>
+on {{ post.origin }}</p>
+    <div class="replies">
+        {% for reply in replies %}
+            <p><a class="btn btn-primary" href="{{ url_for('users.profile', viewer_name=session['username'], viewee_name=reply.creator_name) }}">{{ reply.creator_name }}</a> on {{ reply.origin }}</p>
+            <p> {{ reply.content}}</p>
+        {% endfor %}
+    </div>
+    {% if session['username'] != "guest" %}
+        <p><a class="btn btn-primary" href="{{ url_for('replies.new_reply', post_id=post.id) }}">Your reply</a></p>
+    {% endif %}
+{% endblock %}

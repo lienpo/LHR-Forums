@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+    <h1>Group Discussions</h1>
+</header>
+<section>
+    {% if session['username'] != None %}
+    <a class="btn btn-primary" href="{{ url_for('topics.new_topic') }}">
+        Start New Discussion
+    </a>
+    {% endif %}
+    <div class="list-group mb-3">
+        {% for topic in topics %}
+            <div class="list-group-topic">
+                <a class="btn btn-secondary" href="{{ url_for('topics.view_topic', topic_title=topic.title) }}">{{ topic.title }}</a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

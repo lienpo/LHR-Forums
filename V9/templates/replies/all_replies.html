@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for reply in replies %}
+        <a class="btn btn-secondary" href="{{ url_for('users.profile', viewer_name=session['username'], viewee_name=reply.creator_name) }}">{{ reply.creator_name }}</a>
+        <p>reply.origin</p>
+                <p>reply.content</p>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

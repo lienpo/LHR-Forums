@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">Persing University Discussion Group</h1>
+        <p class="lead">Welcome to the Persing University Discussion group. We are a welcoming group of students
+        who just want to meet up for worldly intellectual discussions about any subjects that come to our interest.</p>
+        {% if session['username'] == "guest" %}
+            <hr class="my-4"/>
+            <p>Not a member yet?</p>
+            <a class="btn btn-primary btn-lg" href="{{ url_for('users.register_user') }}">Just sign up!</a>
+        {% else %}
+            <p>Welcome back, {{ session['username'] }}.</p>
+        {% endif %}
+
+    </div>
+{% endblock %}

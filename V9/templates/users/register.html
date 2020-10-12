@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <header><h1>Join Us Now!</h1></header>
+    <section class="create-user-form">
+        <form method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username"/>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" name="email" placeholder="name@company.xxx"/>
+            </div>
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="password" class="form-control" id="password" name="password"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Join the Group!</button>
+
+        </form>
+    </section>
+{% endblock %}
